@@ -76,7 +76,7 @@
 		                        <td class="col-sm-1 col-md-1 text-right" th:text="${linea.precio}"><strong>$<span th:text="${linea.precio}" /></strong></td>
 		                        <td class="col-sm-1 col-md-1 text-right" th:text="${linea.subtotal}"><strong>$<span th:text="${linea.subtotal}" /></strong></td>
 		                        <td class="col-sm-1 col-md-1">
-		                        <button type="submit" class="btn btn-danger" th:value="${lineaStat.index}">
+		                        <button type="submit" class="btn btn-danger" name="removerLinea" th:value="${lineaStat.index}">
 		                            <span class="glyphicon glyphicon-remove"></span> Remover
 		                        </button></td>
 		                    </tr>                    

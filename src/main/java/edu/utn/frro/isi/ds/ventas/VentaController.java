@@ -2,6 +2,8 @@ package edu.utn.frro.isi.ds.ventas;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -42,8 +44,16 @@ public class VentaController {
     }
     
     @RequestMapping(value="/", params={"agregarLinea"})
-    public String identificarCliente( Model model) {
+    public String agregarLinea( Model model) {
     	venta.agregarLinea();
+    	model.addAttribute("venta", venta);
+        return "venta";
+    }
+    
+    @RequestMapping(value="/", params={"removerLinea"})
+    public String removerLinea( Model model, final HttpServletRequest req) {
+        final Integer index = Integer.valueOf(req.getParameter("removerLinea"));
+    	venta.revoerLinea(index);
     	model.addAttribute("venta", venta);
         return "venta";
     }

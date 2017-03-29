@@ -80,4 +80,10 @@ public class Venta {
 		return id!=null;
 	}
 
+	public void revoerLinea(Integer index) {
+		if (lineas.size() > index) {
+			lineas.remove(index);
+		}		
+	}
+
 }
