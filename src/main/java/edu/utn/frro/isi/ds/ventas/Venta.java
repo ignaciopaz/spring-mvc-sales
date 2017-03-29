@@ -27,6 +27,7 @@ public class Venta {
 	private Date fechaVenta;
 	
 	protected Venta() {
+		this(new Cliente());
 	}
 
 	protected Venta(Cliente cliente) {

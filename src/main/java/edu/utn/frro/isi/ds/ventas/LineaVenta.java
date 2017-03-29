@@ -14,7 +14,7 @@ public class LineaVenta {
 
 	@ManyToOne(optional = false)
 	private Producto producto=null;
-	private Integer cantidad=null;
+	private Integer cantidad;
 	
 	public LineaVenta(Producto producto, Integer cantidad) {
 		this.producto = producto;
