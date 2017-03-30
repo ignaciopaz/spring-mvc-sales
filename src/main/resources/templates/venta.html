@@ -23,8 +23,8 @@
 						<input type="submit" name="identificarCliente" class="hidden"/>
 				    </div>
 				    <div class="media-body " th:if="${venta.cliente!=null}">
-						<label>Cliente: </label> <label th:text="*{cliente.id}" /> -
-						<label th:text="*{cliente.nombre}" /> <label th:text="*{cliente.apellido}" />							
+						<label>Cliente:</label> <label th:text="*{cliente.id}" /> 
+					    <label th:text="*{cliente.nombre}" /> <label th:text="*{cliente.apellido}" />							
 					</div>
 					<div class="form-group" th:if="${venta.cliente!=null and !venta.terminada}">
 					    <label for="productoId">Producto: </label>
