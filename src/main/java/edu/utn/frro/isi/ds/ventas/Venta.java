@@ -27,12 +27,12 @@ public class Venta {
 	private Date fechaVenta;
 	
 	protected Venta() {
-		this(new Cliente());
+		this.fechaVenta=new Date();
 	}
 
 	protected Venta(Cliente cliente) {
+		this();
 		this.cliente=cliente;
-		this.fechaVenta=new Date();
 	}
 
 	public void agregarProducto(Producto producto, Integer cantidad) {
@@ -76,14 +76,19 @@ public class Venta {
 		return id;
 	}
 	
-	public Boolean isTerminada(){
+	public Boolean isTerminada() {
 		return id!=null;
 	}
 
-	public void revoerLinea(Integer index) {
-		if (lineas.size() > index) {
-			lineas.remove(index);
+	public void removerLinea(Integer index) {
+		LineaVenta linea = getLineaAt(index);
+		if (linea != null) {
+			lineas.remove(linea);
 		}		
+	}
+	
+	public boolean isComprable() {
+		return !isTerminada() && lineas.size()>0;
 	}
 
 }

@@ -52,8 +52,8 @@ public class DatabaseLoader implements CommandLineRunner {
 		this.clienteRepository.save(new Cliente("Peregrin", "Took", "pipe smoker"));
 	}
 	private void locadProductos() {
-		this.productoRepository.save(new Producto("Martillo", 20.0 ));
-		this.productoRepository.save(new Producto("Destornillador", 10.0 ));
+		this.productoRepository.save(new Producto("Martillo", 20.0, "http://download.seaicons.com/download/i57282/iconleak/atrous/iconleak-atrous-hammer.ico"));
+		this.productoRepository.save(new Producto("Destornillador", 10.0, "https://www.ecured.cu/images/thumb/f/ff/Destornillador1.jpg/260px-Destornillador1.jpg"));
 		this.productoRepository.save(new Producto("Pack de Tornillos", 5.0 ));
 		
 	}

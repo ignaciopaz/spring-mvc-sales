@@ -3,119 +3,124 @@
 <head>
 	<title>Shopping Cart</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/bootstrap1.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
     <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-8" ></meta>
-	<script type="text/javascript">
-		//<![CDATA[
-		function identificarCliente() {
-			form.identificarCliente.click();
-		}
-		//]]>
-	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 <body>
 	<div class="container" >
-    <form action="#" th:action="@{/}" th:object="${venta}" method="post" id="form" class="css-form" >
+    
     	<div class="row">
 		        <div class="col-sm-12 col-md-10 col-md-offset-1">
 					<h2>Shopping Cart</h2>
-					
-		        	<table >
-		        		
-						<tr>
-							<td class="text-center">
-							<div class="media-body ">
-								Cliente ID: <input type="number" th:field="*{cliente.id}" class="input-small" onchange="form.identificarCliente.click()" required="true" />
-								<input type="submit" name="identificarCliente" class="hidden"/>
-								<strong><span th:text="*{cliente.nombre}" /> <span th:text="*{cliente.apellido}" /></strong>
-								
-							</div>
-							</td>
-						</tr>
-					</table>
-		            <table class="table table-hover">
+					<form action="#" th:action="@{/}" th:object="${venta}" method="post" id="form" class="form-inline" >
+						<ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+			          	</ul>
+			        <div class="form-group" th:if="${venta.cliente==null}">
+					    <label class="sr-only" for="cliente.id">Cliente ID</label>
+					    <input type="number" name="cliente.id" id="cliente.id" onchange="form.identificarCliente.click()" required="true" class="form-control input-sm" placeholder="Id Cliente"/>
+						<input type="submit" name="identificarCliente" class="hidden"/>
+				    </div>
+				    <div class="media-body " th:if="${venta.cliente!=null}">
+						<label>Cliente: </label> <label th:text="*{cliente.id}" /> -
+						<label th:text="*{cliente.nombre}" /> <label th:text="*{cliente.apellido}" />							
+					</div>
+					<div class="form-group" th:if="${venta.cliente!=null and !venta.terminada}">
+					    <label for="productoId">Producto: </label>
+					    <select name="productoId" id="productoId" required="true" class="form-control input-sm" placeholder="Producto">
+						<option value=""></option>
+     							<option th:each="produdcto : ${productos}" 
+              						 th:value="${produdcto.id}" 
+               						th:text="${produdcto.descripcion}"></option>
+    							</select>
+    					<input type="number" name="cantidad" class="form-control input-sm" required="true" placeholder="Cantidad" min="1" max="10" />
+   						<button type="submit" class="btn btn-default"  name="agregarLinea"><span class="glyphicon glyphicon-shopping-cart"></span>
+                            Agregar Item
+                        </button>
+				    </div>		        	
+					</form>
+					<form action="#" th:action="@{/}" th:object="${venta}" method="post" id="formLineas" class="form-inline" >
+		            <div class="table-responsive">
+		            <table class="table table-hover table-striped table-condensed">
 		                <thead>
 		                    <tr>
-		                        <th>Id Producto</th>
-					            <th>Descripción</th>
-					            <th>Cantidad</th>
-		                        <th class="text-center">Precio</th>
-		                        <th class="text-center">Subtotal</th>
+		                        <th>Id</th>
+					            <th>Producto</th>
+					            <th class="text-center">Cantidad</th>
+		                        <th class="text-right">Precio</th>
+		                        <th class="text-right">Subtotal</th>
 		                        <th></th>
 		                    </tr>
 		                </thead>
 		                
 		                 <tbody>
-		                	 <input type="submit" name="agregarProducto" class="hidden"/>
-		                    <tr class="repeated-item" data-th-each="linea,lineaStat : ${venta.lineas}">
-		                    	<td>
-		                    		<select th:field="*{lineas[__${lineaStat.index}__].producto}" required="true" onchange="form.agregarProducto.value='${lineaStat.index}'; form.agregarProducto.click()">
-        							  <option value=""></option>
-        							  <option th:each="var : ${productos}" 
-                 						 th:value="${var.id}" 
-                  							th:text="${var.descripcion}">Prod</option>
-       								 </select>
-		                    	</td>
+		                    <tr class="repeated-item"  data-th-each="linea,lineaStat : ${venta.lineas}">		                    	
+		                    	<td th:text="${linea.producto.id}"></td>		                    	
 		                        <td class="col-sm-8 col-md-6">
 			                        <div class="media">
-			                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 52px; height:52px;" /> </a>
+			                            <a class="thumbnail pull-left" href="#"> <img class="img-rounded" th:src="${linea.producto.urlImagen != null ? linea.producto.urlImagen : 'http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png'}" style="width: 45px; height:45px;" /> </a>
 			                            <div class="media-body ">
 			                                <h4 class="media-heading"><a href="#">
 			                                <span th:text="${linea.descripcion}" />
 			                                </a></h4>
-			                                <h5 class="media-heading"> Provisto por <a href="#">Proveedor</a></h5>
-			                                <span>Status: </span><span class="text-success"><strong>En Stock</strong></span>
+			                                <h6 class="media-heading"> Provisto por <a href="#">Proveedor</a></h6>
+			                                <h6 class="media-heading">Status: <span class="text-success"><strong>En Stock</strong></span></h6>
 			                            </div>
 			                        </div>
 		                        </td>
-		                        <td class="col-sm-1 col-md-1" style="text-align: center">
-		                        <div >
-		                        	<input type="number" th:text="${linea.cantidad}"  class="input-mini"  required="true"  min="0" max="10" integer="true" />
-		                        </div>
-		                        </td>
-		                        <td class="col-sm-1 col-md-1 text-right" th:text="${linea.precio}"><strong>$<span th:text="${linea.precio}" /></strong></td>
-		                        <td class="col-sm-1 col-md-1 text-right" th:text="${linea.subtotal}"><strong>$<span th:text="${linea.subtotal}" /></strong></td>
+		                        <td class="col-sm-1 col-md-1" style="text-align: center" th:text="${linea.cantidad}"></td>		                        
+		                        <td class="col-sm-1 col-md-1 text-right"><strong>
+		                        $ <span th:text="${#numbers.formatDecimal(linea.precio, 0, 'COMMA', 2, 'POINT')}"/></strong></td>
+		                        <td class="col-sm-1 col-md-1 text-right"><strong>$<span th:text="${#numbers.formatDecimal(linea.subtotal, 0, 'COMMA', 2, 'POINT')}" /></strong></td>
 		                        <td class="col-sm-1 col-md-1">
-		                        <button type="submit" class="btn btn-danger" name="removerLinea" th:value="${lineaStat.index}">
+		                        <button type="submit" class="btn btn-danger btn-sm" name="removerLinea" th:value="${lineaStat.index}" th:if="${!venta.terminada}">
 		                            <span class="glyphicon glyphicon-remove"></span> Remover
-		                        </button></td>
+		                        </button>
+		                        </td>
 		                    </tr>                    
 		                </tbody>
 		                
 		                <tfoot>
 		                    <tr>
-		                        <td>
-			                        <button type="button" class="btn btn-default"  onclick="form.agregarLinea.click()">
-			                        	<input type="submit" name="agregarLinea" class="hidden"/>
-			                            <span class="glyphicon glyphicon-shopping-cart"></span> Agregar Item
-			                        </button>
-		                        </td>
+		                        <td></td>
 		                        <td></td>
 		                        <td></td>
 		                        <td><h5>Envío</h5><h3>Total</h3></td>
-		                        <td class="text-right"><h5><strong>$0.00</strong></h5><h3>$<span th:text="*{total}" /></h3></td>
+		                        <td class="text-right"><h5><strong>$0.00</strong></h5><h3>
+		                        $<span th:text="${#numbers.formatDecimal(venta.total, 0, 'COMMA', 2, 'POINT')}" /></h3>
+		                        </td>
 		                        <td></td>
-		                    </tr>		                    
+		                    </tr>
+		                    <tr class="check-element animate-show-hide" th:if="${venta.terminada}">
+		                        <td></td>
+		                        <td></td>
+		                        <td colspan="2" ><h3><strong>Nro de Venta</strong></h3></td>
+		                        <td class="text-right"><h3><strong><span th:text="${venta.id}" /></strong></h3></td>
+		                        <td></td>
+		                    </tr>
 		                    <tr>
 		                        <td></td>
 		                        <td></td>
 		                        <td></td>
 		                        <td>
-		                        <button type="button" class="btn btn-danger" >
+		                        <button type="submit" class="btn btn-danger" >
 		                            <span class="glyphicon glyphicon-refresh"></span> Reiniciar
 		                        </button>
 		                        </td>
 		                        <td>
-		                        <button type="button" class="btn btn-success" >
+		                        <button type="submit" name="Comprar" class="btn btn-success" th:if="${venta.comprable}">
 		                            Comprar <span class="glyphicon glyphicon-play"></span>
 		                        </button></td>
 		                         <td></td>
 		                    </tr>
 		                </tfoot>
 		            </table>
+		            </div>
+		            </form>
 		        </div>
 		    </div>
-    </form>
+
 	</div>
 </body>
 </html>

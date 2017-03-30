@@ -12,14 +12,19 @@ public class Producto {
 	private Long id;
 
 	private String descripcion;
-
-	private Double precio;
+	private Double precio;	
+	private String urlImagen;
+	
 	protected Producto() {
 	}
 
 	public Producto(String descripcion, Double precio) {
 		this.descripcion = descripcion;
 		this.precio = precio;
+	}
+	public Producto(String descripcion, Double precio, String urlImagen) {
+		this( descripcion,  precio);
+		this.urlImagen = urlImagen;
 	}
 	public String getDescripcion() {
 		return descripcion;
@@ -42,6 +47,14 @@ public class Producto {
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getUrlImagen() {
+		return urlImagen;
+	}
+
+	public void setUrlImagen(String urlImagen) {
+		this.urlImagen = urlImagen;
 	}
 
 
