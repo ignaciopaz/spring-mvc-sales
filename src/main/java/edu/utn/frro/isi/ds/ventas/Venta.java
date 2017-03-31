@@ -50,7 +50,7 @@ public class Venta {
 	}
 	
 	public List<Producto> getProductos() {
-		List<Producto> productos = new ArrayList();
+		List<Producto> productos = new ArrayList<Producto>();
 		for (LineaVenta linea : lineas) {
 			productos.add(linea.getProducto());
 		}
@@ -108,7 +108,6 @@ public class Venta {
 
 	public boolean isPuedeAgregar(Producto producto, Integer cantidadTotalRequerida) {
 		if (!producto.isTieneStock(cantidadTotalRequerida)) return false;
-		Integer stock = producto.getCantidadStock();
 		
 		for (LineaVenta linea : lineas) {
 			if(producto.equals(linea.getProducto())) {
