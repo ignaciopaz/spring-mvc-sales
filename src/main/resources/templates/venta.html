@@ -28,7 +28,7 @@
 						<label>Cliente:</label> <span th:text="*{cliente.id}" /> -
 					    <span th:text="*{cliente.nombre}" /> <span  th:text="*{cliente.apellido}" />							
 					</div>
-					<div class="form-group" th:if="${venta.cliente!=null and !venta.terminada}">
+					<div class="form-group" th:if="${venta.cliente!=null and !venta.terminada}" >
 					    <label for="productoId">Producto: </label>
 					    <select name="productoId" id="productoId" required="true" class="form-control input-sm" placeholder="Producto">
 						<option value=""></option>
@@ -36,7 +36,7 @@
               						 th:value="${produdcto.id}" 
                						th:text="${produdcto.descripcion}"></option>
     							</select>
-    					<input type="number" name="cantidad" class="form-control input-sm" required="true" placeholder="Cantidad" min="1" max="10" />
+    					<input type="number" name="cantidad" id="cantidad" class="form-control input-sm" required="true" placeholder="Cantidad" min="1" max="10" style="width:90px"/>
    						<button type="submit" class="btn btn-default"  name="agregarLinea"><span class="glyphicon glyphicon-shopping-cart"></span>
                             Agregar Item
                         </button>
@@ -59,7 +59,7 @@
 		                 <tbody>
 		                    <tr class="repeated-item"  data-th-each="linea,lineaStat : ${venta.lineas}">		                    	
 		                    	<td th:text="${linea.producto.id}"></td>		                    	
-		                        <td class="col-sm-8 col-md-6">
+		                        <td>
 			                        <div class="media">
 			                            <a class="thumbnail pull-left" href="#"> <img class="img-rounded" th:src="${linea.producto.urlImagen != null ? linea.producto.urlImagen : 'http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png'}" style="width: 45px; height:45px;" /> </a>
 			                            <div >
