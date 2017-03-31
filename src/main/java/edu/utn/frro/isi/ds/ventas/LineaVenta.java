@@ -17,12 +17,12 @@ public class LineaVenta {
 	@ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
 	private Producto producto=null;
 	private Integer cantidad;
+	private Double precioProductoCobrado;
 	
 	public LineaVenta(Producto producto, Integer cantidad) {
 		this.producto = producto;
 		this.cantidad = cantidad;
-	}
-	
+	}	
 	
 	public LineaVenta() {
 	}
@@ -52,6 +52,9 @@ public class LineaVenta {
 		return producto.getId();
 	}
 	public Double getPrecio() {
+		if (precioProductoCobrado != null) {
+			return precioProductoCobrado;
+		}
 		if (producto==null)
 			return null;
 		return producto.getPrecio();
@@ -64,8 +67,8 @@ public class LineaVenta {
 		return producto.getPrecio() * cantidad;
 	}
 
-
 	public void confirmar() {
-		producto.reducirStock(cantidad);		
+		producto.reducirStock(cantidad);
+		precioProductoCobrado = producto.getPrecio();
 	}
 }

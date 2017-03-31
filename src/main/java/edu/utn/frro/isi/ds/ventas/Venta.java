@@ -44,6 +44,14 @@ public class Venta {
 		return lineas;
 	}
 	
+	public List<Producto> getProductos() {
+		List<Producto> productos = new ArrayList();
+		for (LineaVenta linea : lineas) {
+			productos.add(linea.getProducto());
+		}
+		return productos;
+	}
+	
 	public Double getTotal() {
 		Double total=0.0;
 		for(LineaVenta linea : lineas) {
@@ -93,4 +101,16 @@ public class Venta {
 		
 	}
 
+	public boolean isPuedeAgregar(Producto producto, Integer cantidadTotalRequerida) {
+		if (!producto.isTieneStock(cantidadTotalRequerida)) return false;
+		Integer stock = producto.getCantidadStock();
+		
+		for (LineaVenta linea : lineas) {
+			if(producto.equals(linea.getProducto())) {
+				cantidadTotalRequerida += linea.getCantidad();
+				if (!producto.isTieneStock(cantidadTotalRequerida)) return false;
+			}
+		}
+		return true;
+	}
 }

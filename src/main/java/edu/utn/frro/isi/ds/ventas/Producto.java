@@ -56,8 +56,12 @@ public class Producto {
 		this.urlImagen = urlImagen;
 	}
 	
-	public boolean getTieneStock() {
-		return cantidadStock > 0;
+	public boolean isTieneStock() {
+		return isTieneStock(1);
+	}
+	
+	public boolean isTieneStock(Integer cantidad) {
+		return cantidadStock >= cantidad;
 	}
 
 	public Integer getCantidadStock() {
@@ -70,6 +74,14 @@ public class Producto {
 
 	public void reducirStock(Integer cantidad) {
 		cantidadStock -= cantidad;		
+	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Producto && o !=null) {
+			Producto other = (Producto) o;
+			return other.getId().equals(getId());
+		}
+		return false;
 	}
 
 
