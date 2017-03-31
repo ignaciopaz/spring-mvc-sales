@@ -36,6 +36,11 @@ public class VentaController {
         model.addAttribute("venta", venta);
         return "venta";
     }
+	@RequestMapping("/venta")
+	public String verVenta(Model model) {
+		model.addAttribute("venta", venta);
+		return "venta";
+	}
     
     @RequestMapping(value="/", params={"identificarCliente"})
     public String identificarCliente( @RequestParam(value="cliente.id", required=true) Long clienteId,  Model model) {
@@ -47,7 +52,7 @@ public class VentaController {
     	} catch (EntityNotFoundException e) {
     	}    	
     	model.addAttribute("venta", venta);
-        return "venta";
+        return "redirect:venta";
     }
     
     @RequestMapping(value="/", params={"agregarLinea"})
@@ -56,14 +61,14 @@ public class VentaController {
     	Producto producto = productoRepository.getOne(productoId);
     	venta.agregarProducto(producto, cantidad);
     	model.addAttribute("venta", venta);
-        return "venta";
+        return "redirect:venta";
     }
     
     @RequestMapping(value="/", params={"removerLinea"})
     public String removerLinea(@RequestParam(value="removerLinea", required=true) Integer index, Model model) {
     	venta.removerLinea(index);
     	model.addAttribute("venta", venta);
-        return "venta";
+        return "redirect:venta";
     }
     
     @RequestMapping(value="/", params={"Comprar"})
@@ -71,7 +76,7 @@ public class VentaController {
     	ventaRepository.save(venta);
 
     	model.addAttribute("venta", venta);
-        return "venta";
+        return "redirect:venta";
     }
 
     

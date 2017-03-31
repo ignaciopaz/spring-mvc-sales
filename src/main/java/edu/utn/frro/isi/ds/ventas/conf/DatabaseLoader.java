@@ -53,8 +53,11 @@ public class DatabaseLoader implements CommandLineRunner {
 	}
 	private void locadProductos() {
 		this.productoRepository.save(new Producto("Martillo", 20.0, "http://download.seaicons.com/download/i57282/iconleak/atrous/iconleak-atrous-hammer.ico"));
-		this.productoRepository.save(new Producto("Destornillador", 10.0, "https://www.ecured.cu/images/thumb/f/ff/Destornillador1.jpg/260px-Destornillador1.jpg"));
+		this.productoRepository.save(new Producto("Destornillador Plano 1000V 3X75Mm Robust", 39.0, "https://www.easy.com.ar/wcsstore/easyar_CAT_AS/imagen/9006902_A.jpg"));
+		this.productoRepository.save(new Producto("Destornillador Phillips 3x15x150Mm Robust", 39.0, "https://www.easy.com.ar/wcsstore/easyar_CAT_AS/imagen/9006616_C.jpg"));		
+		this.productoRepository.save(new Producto("Kit Destornillador Rt-Sd 3.6/2 Li Kit", 1500.0, "https://assets.einhell.com/im/imf/800/900_305401/atornilladores-sin-cable-rt-sd-3%2C6-2-li-kit-produktbild-1.jpg"));
 		this.productoRepository.save(new Producto("Pack de Tornillos", 5.0 ));
+		
 		
 	}
 }
