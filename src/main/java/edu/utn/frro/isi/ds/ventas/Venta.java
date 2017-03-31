@@ -21,7 +21,7 @@ public class Venta {
 	@ManyToOne(optional = false)
 	private Cliente cliente;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
 	private List<LineaVenta> lineas = new ArrayList<LineaVenta>();
 	
 	private Date fechaVenta;
@@ -37,11 +37,6 @@ public class Venta {
 
 	public void agregarProducto(Producto producto, Integer cantidad) {
 		LineaVenta lineaVenta = new LineaVenta(producto, cantidad);
-		lineas.add(lineaVenta);
-	}
-	
-	public void agregarLinea() {
-		LineaVenta lineaVenta = new LineaVenta();
 		lineas.add(lineaVenta);
 	}
 	
@@ -89,6 +84,13 @@ public class Venta {
 	
 	public boolean isComprable() {
 		return !isTerminada() && lineas.size()>0;
+	}
+
+	public void confirmar() {
+		for (LineaVenta l : lineas) {
+			l.confirmar();
+		}
+		
 	}
 
 }

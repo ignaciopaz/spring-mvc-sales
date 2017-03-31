@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
+	@Query("SELECT p FROM Producto p WHERE p.cantidadStock > 0")
+	public List<Producto> buscarProductosEnStock() ;
 	
 }

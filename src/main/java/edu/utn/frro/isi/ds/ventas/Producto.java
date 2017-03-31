@@ -14,16 +14,18 @@ public class Producto {
 	private String descripcion;
 	private Double precio;	
 	private String urlImagen;
+	private Integer cantidadStock;
 	
 	protected Producto() {
 	}
 
-	public Producto(String descripcion, Double precio) {
+	public Producto(String descripcion, Double precio, Integer cantidadStock) {
 		this.descripcion = descripcion;
 		this.precio = precio;
+		this.cantidadStock=cantidadStock;
 	}
-	public Producto(String descripcion, Double precio, String urlImagen) {
-		this( descripcion,  precio);
+	public Producto(String descripcion, Double precio, Integer cantidadStock, String urlImagen) {
+		this( descripcion,  precio, cantidadStock);
 		this.urlImagen = urlImagen;
 	}
 	public String getDescripcion() {
@@ -42,9 +44,6 @@ public class Producto {
 		this.precio = precio;
 	}
 
-
-	
-
 	public Long getId() {
 		return id;
 	}
@@ -55,6 +54,22 @@ public class Producto {
 
 	public void setUrlImagen(String urlImagen) {
 		this.urlImagen = urlImagen;
+	}
+	
+	public boolean getTieneStock() {
+		return cantidadStock > 0;
+	}
+
+	public Integer getCantidadStock() {
+		return cantidadStock;
+	}
+
+	public void setCantidadStock(Integer cantidadStock) {
+		this.cantidadStock = cantidadStock;
+	}
+
+	public void reducirStock(Integer cantidad) {
+		cantidadStock -= cantidad;		
 	}
 
 

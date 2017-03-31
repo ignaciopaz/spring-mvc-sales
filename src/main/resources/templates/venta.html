@@ -65,7 +65,7 @@
 			                                <span th:text="${linea.descripcion}" />
 			                                </a></h4>
 			                                <h6 class="media-heading"> Provisto por <a href="#">Proveedor</a></h6>
-			                                <h6 class="media-heading">Status: <span class="text-success"><strong>En Stock</strong></span></h6>
+			                                <h6 class="media-heading"><strong><span class="text-success" th:text="'En Stock: ' + ${linea.producto.cantidadStock}"/></strong></h6>
 			                            </div>
 			                        </div>
 		                        </td>

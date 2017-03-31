@@ -1,6 +1,8 @@
 package edu.utn.frro.isi.ds.ventas;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,7 +14,7 @@ public class LineaVenta {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
 	private Producto producto=null;
 	private Integer cantidad;
 	
@@ -60,5 +62,10 @@ public class LineaVenta {
 		if (producto==null)
 			return 0.0;
 		return producto.getPrecio() * cantidad;
+	}
+
+
+	public void confirmar() {
+		producto.reducirStock(cantidad);		
 	}
 }

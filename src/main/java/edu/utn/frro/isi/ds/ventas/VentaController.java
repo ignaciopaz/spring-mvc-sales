@@ -27,7 +27,7 @@ public class VentaController {
     
     @ModelAttribute("productos")
     public List<Producto> getProductos() {
-        return productoRepository.findAll();
+        return productoRepository.buscarProductosEnStock();
     }    
     
 	@RequestMapping("/")
@@ -73,7 +73,11 @@ public class VentaController {
     
     @RequestMapping(value="/", params={"Comprar"})
     public String comprar( Model model) {
+    	venta.confirmar();
     	ventaRepository.save(venta);
+    	for (LineaVenta l : venta.getLineas()) {
+			//productoRepository.save(l.getProducto());
+		}
 
     	model.addAttribute("venta", venta);
         return "redirect:venta";
