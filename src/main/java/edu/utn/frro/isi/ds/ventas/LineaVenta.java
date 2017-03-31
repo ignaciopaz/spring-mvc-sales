@@ -14,7 +14,8 @@ public class LineaVenta {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = {CascadeType.MERGE})
+	@JoinColumn(name="producto_id")
 	private Producto producto=null;
 	private Integer cantidad;
 	private Double precioProductoCobrado;
@@ -67,7 +68,7 @@ public class LineaVenta {
 		return producto.getPrecio() * cantidad;
 	}
 
-	public void confirmar() {
+	public void comprar() {
 		producto.reducirStock(cantidad);
 		precioProductoCobrado = producto.getPrecio();
 	}

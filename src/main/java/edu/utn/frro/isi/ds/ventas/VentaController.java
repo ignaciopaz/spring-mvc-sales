@@ -59,15 +59,15 @@ public class VentaController {
     public String agregarLinea(@Valid @RequestParam(value="productoId", required=true) Long productoId, @RequestParam(value="cantidad", required=true) Integer cantidad, Model model) {
     	Producto producto = productoRepository.getOne(productoId);
     	model.addAttribute("error", "Solo quedan "+producto.getCantidadStock()+" unidades del producto "+producto.getDescripcion());
-    	if (venta.isPuedeAgregar(producto, cantidad)) {
-    		venta.agregarProducto(producto, cantidad);
-    		model.addAttribute("venta", venta);
+    	try {
+			venta.agregarProducto(producto, cantidad);
             return "redirect:venta";
-    	} else {
-    		model.addAttribute("venta", venta);
-    		model.addAttribute("error", "Solo quedan " +producto.getCantidadStock() +" unidades del producto "+producto.getDescripcion());
-    		return "venta";
-    	}    	
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+			return "venta";
+		} finally {
+			model.addAttribute("venta", venta);
+		}    	
     }
     
     @RequestMapping(value="/", params={"removerLinea"})
@@ -79,7 +79,7 @@ public class VentaController {
     
     @RequestMapping(value="/", params={"Comprar"})
     public String comprar( Model model) {
-    	venta.confirmar();
+    	venta.comprar();
     	ventaRepository.save(venta);
     	productoRepository.save(venta.getProductos());
     	

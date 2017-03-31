@@ -18,10 +18,14 @@ public class Producto {
 	
 	protected Producto() {
 	}
-
-	public Producto(String descripcion, Double precio, Integer cantidadStock) {
+	
+	public Producto(String descripcion, Double precio) {
 		this.descripcion = descripcion;
 		this.precio = precio;
+	}
+
+	public Producto(String descripcion, Double precio, Integer cantidadStock) {
+		this( descripcion,  precio);
 		this.cantidadStock=cantidadStock;
 	}
 	public Producto(String descripcion, Double precio, Integer cantidadStock, String urlImagen) {

@@ -35,7 +35,12 @@ public class Venta {
 		this.cliente=cliente;
 	}
 
-	public void agregarProducto(Producto producto, Integer cantidad) {
+	public void agregarProducto(Producto producto, Integer cantidad) throws RuntimeException {
+		if (getProductos().contains(producto)) {
+			throw new RuntimeException("El producto "+producto.getDescripcion()+ " ya está agregado.");
+		} else if (!isPuedeAgregar(producto, cantidad)) {
+			throw new RuntimeException("Solo quedan " +producto.getCantidadStock() +" unidades del producto "+producto.getDescripcion());
+		}
 		LineaVenta lineaVenta = new LineaVenta(producto, cantidad);
 		lineas.add(lineaVenta);
 	}
@@ -94,9 +99,9 @@ public class Venta {
 		return !isTerminada() && lineas.size()>0;
 	}
 
-	public void confirmar() {
-		for (LineaVenta l : lineas) {
-			l.confirmar();
+	public void comprar() {
+		for (LineaVenta linea : lineas) {
+			linea.comprar();
 		}
 		
 	}
