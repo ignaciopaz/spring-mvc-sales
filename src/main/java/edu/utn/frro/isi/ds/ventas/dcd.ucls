@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.14" icons="true" automaticImage="GIF" always-add-relationships="true" generalizations="true" 
-  realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+<class-diagram version="1.1.14" icons="true" automaticImage="JPEG" always-add-relationships="true" 
+  generalizations="true" realizations="true" associations="true" dependencies="true" nesting-relationships="true" 
+  router="FAN">  
   <class id="1" language="java" name="edu.utn.frro.isi.ds.ventas.VentaController" project="spring-mvc-sales" 
     file="/spring-mvc-sales/src/main/java/edu/utn/frro/isi/ds/ventas/VentaController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -62,7 +63,7 @@
   </interface>  
   <class id="7" language="java" name="edu.utn.frro.isi.ds.ventas.Cliente" project="spring-mvc-sales" 
     file="/spring-mvc-sales/src/main/java/edu/utn/frro/isi/ds/ventas/Cliente.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="157" y="493"/>    
+    <position height="-1" width="-1" x="153" y="494"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -82,7 +83,7 @@
     project="spring-angular-crud-movies" 
     file="C:/Users/ipaz/.m2/repository/org/springframework/data/spring-data-jpa/1.10.6.RELEASE/spring-data-jpa-1.10.6.RELEASE.jar" 
     binary="true" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="734" y="74"/>    
+    <position height="-1" width="-1" x="715" y="72"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -112,10 +113,10 @@
   <association id="15">    
     <end type="SOURCE" refId="3" navigable="false">      
       <attribute id="16" name="cliente">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-4" y="1"/>      
       </attribute>      
       <multiplicity id="17" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-4" y="1"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
