@@ -5,25 +5,32 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity
+@Entity @Table(name="ventas") //Ejemplo de mapeo: de la clase Venta a tabla ventas, no hace falta si la tabla tiene el mismo nombre que la clase.
 public class Venta {
 
 	@Id
 	@GeneratedValue
+	@Column(name="id_venta", nullable=false) //Ejemplo de mapeo: a campo id_vanta de la tabla ventas, no hace falta si el campo tiene el mismo nombre que el atributo.
 	private Long id;
 
 	@ManyToOne(optional = false)
+	@JoinColumn(name = "id_cliente", nullable=false) //Mapeo: nombre del campo en la tabla ventas que será la FK a la tabla cliente
 	private Cliente cliente;
 
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+	@JoinColumn(name="id_venta") //Mapeo: nombre del campo en la tabla lineaventa que será la FK a la tabla ventas
 	private List<LineaVenta> lineas = new ArrayList<LineaVenta>();
 	
+	@Column(name="fecha_venta", nullable=false)
 	private Date fechaVenta;
 	
 	protected Venta() {

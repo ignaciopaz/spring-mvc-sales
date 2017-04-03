@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+@Entity //no hay mapeo, se asume que la tabla se llama clientes y los campos tienen los mismos nombres que los atributos.
 public class Cliente {
 
 	@Id
