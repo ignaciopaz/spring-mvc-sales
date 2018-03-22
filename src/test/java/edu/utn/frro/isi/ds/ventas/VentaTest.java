@@ -8,7 +8,7 @@ import org.junit.Test;
 
 
 public class VentaTest {
-	private static Producto p1, p2;
+	private static Producto p1, p2, p3;
 	private static Venta v;
 	
 	@Before
@@ -18,8 +18,12 @@ public class VentaTest {
 	
     @BeforeClass
     public static void setupAllTests() {
-    	p1 = new Producto("p1", 10.0);
-    	p2 = new Producto("p2", 5.5);
+    	p1 = new Producto("p1", 10.0, 3);
+    	p1.setId(1L);
+    	p2 = new Producto("p2", 5.5, 3);
+    	p2.setId(2L);
+    	p3 = new Producto("p3", 6.0, 5);
+    	p3.setId(3L);
     }
     
 	@Test public void calcularTotal1Producto1Item() {
@@ -34,14 +38,23 @@ public class VentaTest {
 	
 	@Test public void calcularTotal2Producto() {
 		v.agregarProducto(p1, 2);
-		v.agregarProducto(p1, 1);
-		assertEquals(Double.valueOf(30.0), v.getTotal());
+		v.agregarProducto(p2, 1);
+		assertEquals(Double.valueOf(25.5), v.getTotal());
 	}
 	
 	@Test public void calcularTotal2Producto3Lineas() {
 		v.agregarProducto(p1, 2);
-		v.agregarProducto(p1, 3);
 		v.agregarProducto(p2, 3);
-		assertEquals(Double.valueOf(66.5), v.getTotal());
+		v.agregarProducto(p3, 3);
+		assertEquals(Double.valueOf(54.5), v.getTotal());
+	}
+	
+	@Test(expected=RuntimeException.class) public void agregarProductoDuplicado() {
+		v.agregarProducto(p1, 2);
+		v.agregarProducto(p1, 3);		
+	}
+	
+	@Test(expected=RuntimeException.class) public void agregarProductoSinStockSuficiente() {
+		v.agregarProducto(p1, 22);
 	}
 }

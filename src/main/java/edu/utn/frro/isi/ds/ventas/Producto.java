@@ -19,13 +19,9 @@ public class Producto {
 	protected Producto() {
 	}
 	
-	public Producto(String descripcion, Double precio) {
+	public Producto(String descripcion, Double precio, Integer cantidadStock) {
 		this.descripcion = descripcion;
 		this.precio = precio;
-	}
-
-	public Producto(String descripcion, Double precio, Integer cantidadStock) {
-		this( descripcion,  precio);
 		this.cantidadStock=cantidadStock;
 	}
 	public Producto(String descripcion, Double precio, Integer cantidadStock, String urlImagen) {
@@ -60,6 +56,10 @@ public class Producto {
 		this.urlImagen = urlImagen;
 	}
 	
+	public void setId(Long id) {
+		this.id=id;
+	}
+	
 	public boolean isTieneStock() {
 		return isTieneStock(1);
 	}
@@ -83,7 +83,9 @@ public class Producto {
 	public boolean equals(Object o) {
 		if (o instanceof Producto && o !=null) {
 			Producto other = (Producto) o;
-			return other.getId().equals(getId());
+			if (other == this || other.getId().equals(getId())) {
+				return true;
+			}
 		}
 		return false;
 	}
