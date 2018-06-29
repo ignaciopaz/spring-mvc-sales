@@ -24,7 +24,7 @@
   </interface>  
   <class id="3" language="java" name="edu.utn.frro.isi.ds.ventas.Venta" project="spring-mvc-sales" 
     file="/spring-mvc-sales/src/main/java/edu/utn/frro/isi/ds/ventas/Venta.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="790" y="167"/>    
+    <position height="-1" width="-1" x="649" y="146"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -44,7 +44,7 @@
   <class id="5" language="java" name="edu.utn.frro.isi.ds.ventas.LineaVenta" project="spring-mvc-sales" 
     file="/spring-mvc-sales/src/main/java/edu/utn/frro/isi/ds/ventas/LineaVenta.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="774" y="579"/>    
+    <position height="-1" width="-1" x="691" y="555"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -72,7 +72,7 @@
   </class>  
   <class id="8" language="java" name="edu.utn.frro.isi.ds.ventas.Producto" project="spring-mvc-sales" 
     file="/spring-mvc-sales/src/main/java/edu/utn/frro/isi/ds/ventas/Producto.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="468" y="606"/>    
+    <position height="-1" width="-1" x="434" y="601"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -118,10 +118,10 @@
   <association id="18">    
     <end type="SOURCE" refId="3" navigable="false">      
       <attribute id="19" name="lineas">        
-        <position height="0" width="0" x="91" y="-225"/>      
+        <position height="0" width="0" x="8" y="-249"/>      
       </attribute>      
       <multiplicity id="20" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="91" y="-225"/>      
+        <position height="0" width="0" x="8" y="-249"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
@@ -130,10 +130,10 @@
   <association id="21">    
     <end type="SOURCE" refId="1" navigable="false">      
       <attribute id="22" name="venta">        
-        <position height="0" width="0" x="-39" y="-267"/>      
+        <position height="0" width="0" x="-180" y="-288"/>      
       </attribute>      
       <multiplicity id="23" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-39" y="-267"/>      
+        <position height="0" width="0" x="-180" y="-288"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
@@ -154,10 +154,10 @@
   <association id="27">    
     <end type="SOURCE" refId="5" navigable="false">      
       <attribute id="28" name="producto">        
-        <position height="0" width="0" x="31" y="-54"/>      
+        <position height="0" width="0" x="-3" y="-59"/>      
       </attribute>      
       <multiplicity id="29" minimum="0" maximum="1">        
-        <position height="0" width="0" x="31" y="-54"/>      
+        <position height="0" width="0" x="-3" y="-59"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
