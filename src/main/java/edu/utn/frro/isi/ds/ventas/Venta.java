@@ -106,9 +106,9 @@ public class Venta {
 		return !isTerminada() && lineas.size()>0;
 	}
 
-	public void comprar() {
+	public void confirmarVenta() {
 		for (LineaVenta linea : lineas) {
-			linea.comprar();
+			linea.confirmarVenta();
 		}
 		
 	}

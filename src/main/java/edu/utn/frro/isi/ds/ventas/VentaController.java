@@ -79,7 +79,7 @@ public class VentaController {
     
     @RequestMapping(value="/", params={"Comprar"})
     public String comprar( Model model) {
-    	venta.comprar();
+    	venta.confirmarVenta();
     	ventaRepository.save(venta);
     	productoRepository.save(venta.getProductos());
     	

@@ -49,12 +49,22 @@ public class VentaTest {
 		assertEquals(Double.valueOf(54.5), v.getTotal());
 	}
 	
-	@Test(expected=RuntimeException.class) public void agregarProductoDuplicado() {
+	@Test(expected=RuntimeException.class) public void evitarAgregarProductoDuplicado() {
 		v.agregarProducto(p1, 2);
 		v.agregarProducto(p1, 3);		
 	}
 	
-	@Test(expected=RuntimeException.class) public void agregarProductoSinStockSuficiente() {
+	@Test(expected=RuntimeException.class) public void evitarAgregarProductoSinStockSuficiente() {
 		v.agregarProducto(p1, 22);
+	}
+	
+	@Test public void totalVentaNoCambiaAlCambiarElPrecioProducto() {
+		v.agregarProducto(p1, 2);
+		v.agregarProducto(p2, 1);
+		Double totalAntesConfirmar = v.getTotal();
+		v.confirmarVenta();
+		p1.setPrecio(2.0);
+		Double totalDespuesConfirmar = v.getTotal();
+		assertEquals(totalAntesConfirmar, totalDespuesConfirmar);
 	}
 }

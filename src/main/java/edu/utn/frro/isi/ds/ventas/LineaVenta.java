@@ -57,18 +57,16 @@ public class LineaVenta {
 			return precioProductoCobrado;
 		}
 		if (producto==null)
-			return null;
+			return 0.0;
 		return producto.getPrecio();
 	}
 
 
 	public Double getSubtotal() {
-		if (producto==null)
-			return 0.0;
-		return producto.getPrecio() * cantidad;
+		return getPrecio() * cantidad;
 	}
 
-	public void comprar() {
+	public void confirmarVenta() {
 		producto.reducirStock(cantidad);
 		precioProductoCobrado = producto.getPrecio();
 	}
