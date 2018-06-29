@@ -67,4 +67,11 @@ public class VentaTest {
 		Double totalDespuesConfirmar = v.getTotal();
 		assertEquals(totalAntesConfirmar, totalDespuesConfirmar);
 	}
+	
+	@Test(expected=RuntimeException.class) public void evitarAgregarLineaEnVentaFinalizada() {
+		v.agregarProducto(p1, 1);
+		v.agregarProducto(p2, 1);
+		v.confirmarVenta();
+		v.agregarProducto(p3, 1);
+	}
 }
