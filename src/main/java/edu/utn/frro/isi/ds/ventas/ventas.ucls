@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+<class-diagram version="1.2.2" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
   <class id="1" language="java" name="edu.utn.frro.isi.ds.ventas.Venta" project="spring-mvc-sales" 
     file="/spring-mvc-sales/src/main/java/edu/utn/frro/isi/ds/ventas/Venta.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="122" y="126"/>    
@@ -13,7 +14,7 @@
   <class id="2" language="java" name="edu.utn.frro.isi.ds.ventas.LineaVenta" project="spring-mvc-sales" 
     file="/spring-mvc-sales/src/main/java/edu/utn/frro/isi/ds/ventas/LineaVenta.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="415" y="92"/>    
+    <position height="-1" width="-1" x="445" y="94"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,29 +40,39 @@
     </display>  
   </class>  
   <association id="5">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="6" name="cliente">        
-        <position height="18" width="39" x="310" y="283"/>      
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="6" name="producto">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="7" minimum="0" maximum="1"/>    
+      <multiplicity id="7" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="8">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="9" name="lineas"/>      
-      <multiplicity id="10" minimum="0" maximum="2147483647"/>    
+      <attribute id="9" name="cliente">        
+        <position height="18" width="39" x="310" y="283"/>      
+      </attribute>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="11">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="12" name="producto"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="12" name="lineas">        
+        <position height="0" width="0" x="30" y="2"/>      
+      </attribute>      
+      <multiplicity id="13" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="30" y="2"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
