@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.SessionScope;
 
-@Controller
+@Controller @Scope("session")
 public class VentaController {
 
     @Autowired private ClienteRepository clienteRepository;
     @Autowired private ProductoRepository productoRepository;
     @Autowired private VentaRepository ventaRepository;
-    Venta venta;
+    private Venta venta;
     
     @ModelAttribute("productos")
     public List<Producto> getProductos() {
@@ -79,7 +79,7 @@ public class VentaController {
     
     @RequestMapping(value="/", params={"Comprar"})
     public String comprar( Model model) {
-    	venta.comprar();
+    	venta.confirmarVenta();
     	ventaRepository.save(venta);
     	productoRepository.save(venta.getProductos());
     	

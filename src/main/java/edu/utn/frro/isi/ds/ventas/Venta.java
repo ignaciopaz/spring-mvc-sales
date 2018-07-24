@@ -32,9 +32,11 @@ public class Venta {
 	
 	@Column(name="fecha_venta", nullable=false)
 	private Date fechaVenta;
+	private Boolean terminada;
 	
 	protected Venta() {
 		this.fechaVenta=new Date();
+		this.terminada = false;
 	}
 
 	protected Venta(Cliente cliente) {
@@ -43,6 +45,9 @@ public class Venta {
 	}
 
 	public void agregarProducto(Producto producto, Integer cantidad) throws RuntimeException {
+		if (isTerminada()) {
+			throw new RuntimeException("La venta está terminada.");
+		}
 		if (getProductos().contains(producto)) {
 			throw new RuntimeException("El producto "+producto.getDescripcion()+ " ya está agregado.");
 		} else if (!isPuedeAgregar(producto, cantidad)) {
@@ -92,7 +97,7 @@ public class Venta {
 	}
 	
 	public Boolean isTerminada() {
-		return id!=null;
+		return this.terminada || id!=null;
 	}
 
 	public void removerLinea(Integer index) {
@@ -106,10 +111,11 @@ public class Venta {
 		return !isTerminada() && lineas.size()>0;
 	}
 
-	public void comprar() {
+	public void confirmarVenta() {
 		for (LineaVenta linea : lineas) {
-			linea.comprar();
+			linea.confirmarVenta();
 		}
+		this.terminada=true;
 		
 	}
 
