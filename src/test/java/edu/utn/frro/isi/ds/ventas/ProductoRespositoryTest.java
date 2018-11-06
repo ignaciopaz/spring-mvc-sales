@@ -31,6 +31,7 @@ public class ProductoRespositoryTest {
 		List<Producto> productos = this.repository.buscarProductosEnStock();
 		assertThat(productos.isEmpty()).isEqualTo(true);
 	}
+	
 	@Test
 	public void whenAddingProductWithStockResult() throws Exception {
 		persist(new Producto("P1", 2.0, 1));

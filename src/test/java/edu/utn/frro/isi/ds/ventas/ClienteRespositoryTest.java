@@ -43,7 +43,7 @@ public class ClienteRespositoryTest {
 		assertThat(cliente.getNombre()).isEqualTo("John");
 		assertThat(cliente.getApellido()).isEqualTo("Don");
 	}
-	
+
 	@Test
 	public void whenSavingClienteIdIsGenerated() throws Exception {
 		Cliente cliente = new Cliente("Joe", "Doe", "Engineer");
