@@ -8,16 +8,12 @@ import org.junit.Test;
 
 
 public class VentaTest {
-	private static Producto p1, p2, p3;
-	private static Venta v;
+	private Producto p1, p2, p3;
+	private Venta v;
 	
-	@Before
+	@Before // Arrange general para todos los tests. Se corre antes de ejecutar cada test.
     public void setup() {
     	v = new Venta();
-    }
-	
-    @BeforeClass
-    public static void setupAllTests() {
     	p1 = new Producto("p1", 10.0, 3);
     	p1.setId(1L);
     	p2 = new Producto("p2", 5.5, 3);
